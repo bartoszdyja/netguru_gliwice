@@ -1,34 +1,16 @@
-# Workshops application
-
-Hi! We think it’s great that you want to **join along with Netguru** to start learning **Ruby on Rails**. Taking part in workshops is also a **great opportunity to start an internship** with us and become one of the Netguru folks. Since you have just taken your first step on your adventure with programming in RoR, we challenge you to complete the following task. **Ready, steady…Go!**
-
-### Let’s start with a setup:
-
-**Source code**
-
-Don't fork the repository. Clone it (`git clone git@github.com:netguru-training/workshops.git`) and make a new one – we want all of you to have equal chances.
-
-**Database**
-
-Copy the database config file (and edit if needed): 
-` cp config/database.yml.sample config/database.yml`
-
-Make sure the user you've listed in `database.yml` is created for postgres:
-`createuser -s -r workshops`
-
-Setup the database for your application (development and test environments):
-`bin/rake db:setup`
-`bin/rake db:test:prepare`
-
+# Netguru Gliwice Workshops
 
 ### Issues to solve:
 
 1. There are a few missing fields on the `User` model. Make sure `spec/models/user_spec.rb passes.`
+   Added firstname: string
+         lastname: string
+         admin: boolean
 
 2. Make sure settings for [devise](https://github.com/plataformatec/devise) are
-   configured properly.  If they aren’t, most of the controller specs will fail: 
-  * Most of the configuration changes require the server to be restarted.
-  * At some point **you'll have to overwrite the default devise views** - you can find all the required info in the gem readme.
+   configured properly.
+   Added localhost mailer, sanitize firstname and lastname
+   
   
 3. Check `spec/controllers/categories_controller_spec.rb` - there should be a
    couple errors on actions checking admin presence.
