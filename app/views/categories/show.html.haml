@@ -1,10 +1,9 @@
-%p
-  %b Name:
-  = category.name
+%h1= category.name
 
-%p
-  - category.products.each do |product|
-    = product.title
+
+-category.products.each do |product|
+  = link_to product.title, category_product_path(category, product)
+  =product.category.name
 
 -if user_signed_in?
   %p
@@ -13,4 +12,4 @@
   -if current_user.try(:admin?)
     = link_to 'Edit', edit_category_path(category)
     \|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+= link_to 'Back', categories_path

@@ -7,25 +7,23 @@
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
+    %link{ :href => 'http://fonts.googleapis.com/css?family=Slabo+27px', :rel => 'stylesheet', :type => 'text/css'}
+    %title #{AppConfig.workshops_name}
 
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
-        .navbar-header
-          %span.navbar-brand 
-            =link_to "#{AppConfig.workshops_name}", root_path
-        %p.navbar-text.navbar-right
-          -if user_signed_in?
-            ="Hello, #{current_user.firstname}"
-            \|
-            =link_to 'Logout', destroy_user_session_path, method: :delete
-          -else
-            =link_to 'Sign up', new_user_registration_path
-            \|
-            =link_to 'Sign in', new_user_session_path
-    .container-fluid
-      .row
-        .col-lg-12
-          - flash.each do |type, msg|
-            =msg
-          = yield
+    =flash_messages
+    .container
+      .header.clearfix
+        %nav
+          %ul.nav.nav-pills.pull-right
+            -if user_signed_in?
+              %li.active{:role => 'presentation'}
+                =link_to 'Logout', destroy_user_session_path, method: :delete
+            -else
+              %li{:role => 'presentation'}
+                =link_to 'Sign up', new_user_registration_path
+              %li.active{:role => 'presentation'}
+                =link_to 'Sign in', new_user_session_path
+        %h4.text-muted= link_to "#{AppConfig.workshops_name}", root_path
+      = yield
+           

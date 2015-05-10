@@ -1,4 +1,16 @@
-%p= review.content
-%p
-  %b= review.rating
-  %em= review.author
+.col-md-12
+	.col-md-1
+		%h2.green=review.rating
+	.col-md-11
+		=review.content
+		%br/
+		%b=link_to review.author
+		%br/
+		.grey= "added #{time_ago_in_words(review.created_at)} ago"
+%hr/
+
+
+/ %p= review.content
+/ %p
+/   %b= review.rating
+/   %b= link_to review.author

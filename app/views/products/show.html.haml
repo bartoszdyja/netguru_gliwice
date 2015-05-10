@@ -1,19 +1,9 @@
+%h2.left= product.title
+%p= product.description
+%p
+  %b= number_to_currency(product.price, precision: 2)
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
-
-%p
-  %b Category
-  = product.category.name
-
-%h3 Reviews
+%h3 Reviews (#{product.average_rating.round(2)})
 -if user_signed_in?
   = render 'reviews/form'
 
@@ -21,4 +11,4 @@
 -if current_user == product.user
   = link_to 'Edit', edit_category_product_path(category.id, product.id)
   \|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+= link_to 'Back', category_products_path

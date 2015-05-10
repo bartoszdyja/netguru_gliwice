@@ -1,22 +1,25 @@
 %h1 Listing products
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
-
-  - products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
+- category.products.each do |product|
+  %ul.list-group
+    %li.list-group-item
+      %span.badge= product.average_rating.round(2)
+      %h4.list-group-item-heading= product.title
+      .list-group-item-text= truncate(product.description, length: 370, separator: ' ', omission: '... (continued)')
+    %li.list-group-item.list-group-item-success
+      = link_to 'Show', category_product_path(product.category, product)
       -if current_user == product.user
-        %td= link_to 'Edit', edit_category_product_path(product.category, product)
-        %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to 'Edit', edit_category_product_path(product.category, product)
+        = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+      .pull-right= number_to_currency(product.price, precision: 2)
 
 %br
+
+-if user_signed_in?
+  %p
+    %h3 New product
+    = render 'products/form'
+  -if current_user.try(:admin?)
+    = link_to 'Edit', edit_category_path(category)
+    \|
+= link_to 'Back', categories_path
