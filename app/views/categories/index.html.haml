@@ -3,7 +3,7 @@
 		%p.center= link_to 'New Category', new_category_path
 	-categories.each do |category|
 		.col-md-4
-			%h4= category.name
+			%h4= truncate(category.name, length: 22)
 			%p
 				= link_to 'Show', category_products_path(category)
 				-if current_user.try(:admin?)

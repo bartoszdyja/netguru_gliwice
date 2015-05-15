@@ -1,19 +1,23 @@
-# Netguru Gliwice Workshops
+# Netguru Gliwice Workshops - BD
 
-### Issues to solve:
+### Issues:
 
 1. There are a few missing fields on the `User` model. Make sure `spec/models/user_spec.rb passes.`
+   
    Added firstname: string
          lastname: string
          admin: boolean
 
 2. Make sure settings for [devise](https://github.com/plataformatec/devise) are
    configured properly.
+   
    Added localhost mailer, sanitize firstname and lastname
    
   
 3. Check `spec/controllers/categories_controller_spec.rb` - there should be a
    couple errors on actions checking admin presence.
+
+   Fixed in [t3]
 
 4. Next up: `Product` model and `spec/models/product_spec.rb`. Play with validations a bit, calculate average rating and you'll be good to go.
 

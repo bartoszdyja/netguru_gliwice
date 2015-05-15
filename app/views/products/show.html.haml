@@ -2,13 +2,15 @@
 %p= product.description
 %p
   %b= number_to_currency(product.price, precision: 2)
-
-%h3 Reviews (#{product.average_rating.round(2)})
--if user_signed_in?
-  = render 'reviews/form'
-
-= render reviews
 -if current_user == product.user
   = link_to 'Edit', edit_category_product_path(category.id, product.id)
-  \|
+%h3 
+  Reviews (#{product.average_rating.try(:round, 2)})
+
+
+-if user_signed_in?
+  = render 'reviews/form'
+= render reviews
+
+
 = link_to 'Back', category_products_path

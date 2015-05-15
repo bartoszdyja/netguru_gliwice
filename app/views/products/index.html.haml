@@ -3,7 +3,7 @@
 - category.products.each do |product|
   %ul.list-group
     %li.list-group-item
-      %span.badge= product.average_rating.round(2)
+      %span.badge= product.average_rating.try(:round, 2)
       %h4.list-group-item-heading= product.title
       .list-group-item-text= truncate(product.description, length: 370, separator: ' ', omission: '... (continued)')
     %li.list-group-item.list-group-item-success

@@ -6,7 +6,7 @@
 		%br/
 		%b=link_to review.author
 		%br/
-		.grey= "added #{time_ago_in_words(review.created_at)} ago"
+		.grey= "added #{review.created_at.strftime("%d-%m-%y")} "
 %hr/
 
 
