@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get '/users/:id', to:	 'users#show', as: 'user_profile'
   resources :categories do
     resources :products do
       resources :reviews

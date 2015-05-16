@@ -4,13 +4,8 @@
 	.col-md-11
 		=review.content
 		%br/
-		%b=link_to review.author
+		%b=link_to review.author, user_profile_path(review.user)
 		%br/
 		.grey= "added #{review.created_at.strftime("%d-%m-%y")} "
 %hr/
 
-
-/ %p= review.content
-/ %p
-/   %b= review.rating
-/   %b= link_to review.author
